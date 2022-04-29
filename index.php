@@ -8,8 +8,8 @@ $interval = 60 * 5;
 // change (5) to the second you want to set timer for refresh random numbers
 
 srand(floor(time() / $interval * 60));
-$num_one =  rand(0000, 9999);
-$num_two =  rand(0000, 9999);
+$num_one =  rand(1111, 9999);
+$num_two =  rand(1111, 9999);
 
 $return_data = [
     'num_one' => '1.' . $num_one,
