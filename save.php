@@ -1,9 +1,10 @@
 <?php
 
 $servername = "localhost";
-$username = "root";
-$password = "Justsaimain@3820";
+$username = ""; // database username
+$password = ""; // database password
 $dbname = "random_api";
+
 
 $form_num_one = $_POST['num_one'];
 $form_num_two = $_POST['num_two'];

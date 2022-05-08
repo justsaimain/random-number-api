@@ -1,9 +1,10 @@
 <?php
 
 $servername = "localhost";
-$username = "root";
-$password = "Justsaimain@3820";
+$username = ""; // database username
+$password = ""; // database password
 $dbname = "random_api";
+
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
