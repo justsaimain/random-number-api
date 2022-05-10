@@ -1,9 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
+include('./database.php');
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

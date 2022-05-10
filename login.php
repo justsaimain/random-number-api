@@ -1,12 +1,10 @@
 <?php
 
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
-
+include('./database.php');
 
 session_start();
+
+$message = "";
 
 if (isset($_SESSION['username'])) {
     header('Location: panel.php');
@@ -22,18 +20,24 @@ if (isset($_POST['username'])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "select * from users where username='" . $form_username . "' AND pass='" . $form_password . "' limit 1";
-
+    $sql = "select * from users where username='" . mysqli_real_escape_string($conn, $form_username) . "'limit 1";
 
     $result = $conn->query($sql);
-    if (mysqli_num_rows($result) == 1) {
-        $conn->close();
-        $_SESSION['username'] = $form_username;
-        header("Location:panel.php");
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if (password_verify($form_password, $row['pass'])) {
+                $_SESSION['username'] = $form_username;
+                header('Location:panel.php');
+            } else {
+                $message = "Wrong Password";
+            }
+        }
     } else {
-        echo 'no login';
-        $conn->close();
+        $message = "No User Account";
     }
+
+    $conn->close();
 }
 
 ?>
@@ -90,12 +94,20 @@ if (isset($_POST['username'])) {
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .message{
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="main">
         <h1>Control Panel</h1>
+        <p class="message">
+            <?php echo $message;?>
+        </p>
         <form action="#" class="form_div" method="post">
            <div>
                 <input type="text" class="form_input" name="username" placeholder="Username">

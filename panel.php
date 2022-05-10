@@ -1,16 +1,13 @@
 <?php
+
+include('./database.php');
+
 session_start();
+
 
 if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
-
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
-
-
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -99,9 +96,9 @@ if ($row) {
         }
 
         .del-btn{
-            background: red;
+            background: green;
             color: #fff;
-            border: 1px solid red;
+            border: 1px solid green;
         }
 
         .del-form{

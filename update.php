@@ -1,10 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
-
+include('./database.php');
 
 $form_num_one = $_POST['num_one'];
 $form_num_two = $_POST['num_two'];

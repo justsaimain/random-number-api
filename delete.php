@@ -1,10 +1,6 @@
 <?php
 
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
-
+include('./database.php');
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {

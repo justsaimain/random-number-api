@@ -1,11 +1,8 @@
 <?php
 
-header('Content-type: application/json');
+include('./database.php');
 
-$servername = "localhost";
-$username = ""; // database username
-$password = ""; // database password
-$dbname = "random_api";
+header('Content-type: application/json');
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
